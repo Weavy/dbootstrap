@@ -1,7 +1,7 @@
 {{#if properties~}}
 <strong>Properties</strong>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       {{#each (tableHeadHtml properties "name|Name" "type|Type" "defaultvalue|Default" "description|Description")}}<th>{{this}}</th>{{/each}}
