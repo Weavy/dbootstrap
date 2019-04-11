@@ -243,7 +243,11 @@ function _link (input, options) {
         }
       }
     } else {
-      output.url = '#' + anchorName.call(linked, options)
+      var topParent;
+      if (option("fileLinkPrefix", options)) {
+        topParent = topParentObject.call(linked, options) 
+      }
+      output.url = (topParent ? topParent.name : '') + '#' + anchorName.call(linked, options)
     }
   }
   return output
@@ -532,6 +536,19 @@ Returns the parent
 */
 function parentObject (options) {
   return arrayify(options.data.root).find(where({ id: this.memberof }))
+}
+
+/**
+Returns the topmost parent
+@static
+*/
+function topParentObject(options) {
+  var parent = parentObject.call(this, options)
+  if (parent && parent.memberof) {
+    return topParentObject.call(parent, options);
+  } else {
+    return parent || this;
+  }
 }
 
 /**

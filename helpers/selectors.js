@@ -10,6 +10,8 @@ exports.modules = modules
 exports.module = module
 exports.classes = classes
 exports.class = class_
+exports.mixins = mixins
+exports.mixin = mixin_
 exports.functions = functions
 exports.function = function_
 exports.namespace = namespace
@@ -84,6 +86,24 @@ function class_ (options) {
   options.hash.kind = 'class'
   var result = ddata._identifier(options)
   return result ? options.fn(result) : 'ERROR, Cannot find class.'
+}
+
+/**
+ * render the block for each mixin
+ * @static
+ */
+function mixins (options) {
+  options.hash.kind = 'mixin'
+  return handlebars.helpers.each(ddata._identifiers(options), options)
+}
+
+/**
+ * render the supplied block for the specified mixin
+ */
+function mixin_ (options) {
+  options.hash.kind = 'mixin'
+  var result = ddata._identifier(options)
+  return result ? options.fn(result) : 'ERROR, Cannot find mixin.'
 }
 
 /**
