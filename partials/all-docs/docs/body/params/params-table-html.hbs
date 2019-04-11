@@ -1,8 +1,8 @@
 {{#if params}}
-<table>
+<table class="table">
   <thead>
     <tr>
-      {{#each (tableHeadHtml params "name|Param" "type|Type" "defaultvalue|Default" "description|Description")}}<th>{{this}}</th>{{/each}}
+      {{#each (tableHeadHtml params "name|Param" "type|Type" "defaultvalue|Default" "description|Description")}}<th scope="col">{{this}}</th>{{/each}}
     </tr>
   </thead>
   <tbody>

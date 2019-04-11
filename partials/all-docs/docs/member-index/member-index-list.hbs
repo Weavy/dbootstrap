@@ -1,4 +1,6 @@
-{{>index-indent}}* {{>sig-link-parent}}
+<li class="nav-item">
+{{>sig-link-parent}}
 {{#indexChildren ~}}
-{{>member-index-list~}}
+  <ul class="member-index-list">{{>member-index-list~}}</ul>
 {{/indexChildren}}
+</li>

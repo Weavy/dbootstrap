@@ -1,7 +1,8 @@
-{{#if properties}}**Properties**
-
+{{#if properties}}<strong>Properties</strong>
+<ul>
 {{#each properties~}}
-{{#if (regexp-test name "\w+\.\w+")}}  {{/if}}- {{{name}}} {{>linked-type-list types=type.names delimiter=" \| " ~}}{{#if description}} - {{{inlineLinks description}}}{{/if}}  
+  {{#if (regexp-test name "\w+\.\w+")}}  {{/if}}<li> {{{name}}} {{>linked-type-list types=type.names delimiter=" \| " ~}}{{#if description}} - {{{inlineLinks description}}}{{/if}}  </li>
 {{/each}}
+</ul>
 
 {{/if~}}

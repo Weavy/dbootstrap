@@ -1,26 +1,31 @@
 {{setLevel this 0~}}
 {{#if (descendants min=(option 'memberIndex.minDescendants'))~}}
-{{#if isExported~}}
-{{#if (equal (depth) 0)}}
-{{#if (optionEquals "member-index-format" "list")}}
+  {{#if isExported~}}
+    {{#if (equal (depth) 0)}}
+      {{#if (optionEquals "member-index-format" "list")}}
+        <ul class="memberindex-list-0">
+          {{>member-index-list}}
+        </ul>
 
-{{>member-index-list}}
+      {{else~}}
+        <ul class="member-index-grouped-0">
+          {{>member-index-grouped}}
+        </ul>
 
-{{else~}}
+      {{/if~}}
+    {{/if~}}
+  {{else~}}
+    {{#if (optionEquals "member-index-format" "list")}}
+      <ul class="member-index-list nav toc">
+        {{>member-index-list}}
+      </ul>
 
-{{>member-index-grouped}}
+    {{else}}
 
-{{/if~}}
-{{/if~}}
-{{else~}}
-{{#if (optionEquals "member-index-format" "list")}}
+      <ul class="member-index-grouped">
+        {{>member-index-grouped}}
+      </ul>
 
-{{>member-index-list}}
-
-{{else}}
-
-{{>member-index-grouped}}
-
-{{/if~}}
-{{/if~}}
+    {{/if~}}
+  {{/if~}}
 {{/if}}

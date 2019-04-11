@@ -33,7 +33,7 @@ exports.equal = equal
 exports['json-stringify'] = JSON.stringify
 
 /**
-Escape special markdown characters
+Escape special md characters
 */
 function escape (input) {
   if (typeof input !== 'string') return null
@@ -41,7 +41,7 @@ function escape (input) {
 }
 
 /**
-replaces {@link} tags with markdown links in the suppied input text
+replaces {@link} tags with markdown links in the supplied input text
 */
 function inlineLinks (text, options) {
   if (text) {
@@ -50,7 +50,7 @@ function inlineLinks (text, options) {
       var linked = ddata._link(link.url, options)
       if (link.caption === link.url) link.caption = linked.name
       if (linked.url) link.url = linked.url
-      text = text.replace(link.original, '[' + link.caption + '](' + link.url + ')')
+      text = text.replace(link.original, '<a href="' + link.url + '">' + link.caption + '</a>')
     })
   }
   return text
@@ -153,11 +153,7 @@ function tableHeadHtml () {
 
 function deprecated (options) {
   if (this.deprecated) {
-    if (ddata.optionEquals('no-gfm', true, options) || options.hash['no-gfm']) {
-      return '<del>' + options.fn(this) + '</del>'
-    } else {
-      return '~~' + options.fn(this) + '~~'
-    }
+    return '<del>' + options.fn(this) + '</del>'
   } else {
     return options.fn(this)
   }
@@ -329,7 +325,7 @@ function examples (options) {
       }
 
       if (!(/```/.test(example) || exampleLang === 'off')) {
-        example = util.format('```%s%s```', exampleLang ? exampleLang + '\n' : '', example ? example + '\n' : '')
+        example = util.format('<pre><code class="%s">%s</code></pre>', exampleLang ? 'language-' + exampleLang : '', example ? example + '\n' : '')
       }
 
       return prev + options.fn({caption: caption, example: example})

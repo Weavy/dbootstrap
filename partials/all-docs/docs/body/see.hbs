@@ -1,12 +1,10 @@
 {{#if see~}}
-
-{{#if (equal see.length 1)~}}
-**See**: {{{inlineLinks see.[0]}}}  
-{{else~}}
-**See**
-
-{{#each see}}- {{{inlineLinks this}}}
-{{/each}}
-
-{{/if~}}
+  {{#if (equal see.length 1)~}}
+    <strong>See</strong>: {{{inlineLinks see.[0]}}}  <br/>
+  {{else~}}
+    <strong>See</strong>
+    <ul>
+      {{#each see}}<li>{{{inlineLinks this}}}</li>{{/each}}
+    </ul>
+  {{/if~}}
 {{/if~}}

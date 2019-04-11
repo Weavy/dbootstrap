@@ -357,18 +357,13 @@ function sig (options) {
   }
 
   if (this.deprecated) {
-    if (optionEquals('no-gfm', true, options) || options.hash['no-gfm']) {
-      data.depOpen = '<del>'
-      data.depClose = '</del>'
-    } else {
-      data.depOpen = '~~'
-      data.depClose = '~~'
-    }
+    data.depOpen = '<del>'
+    data.depClose = '</del>'
   }
 
   if (option('name-format', options) && !isClass.call(this) && !isModule.call(this)) {
-    data.codeOpen = '`'
-    data.codeClose = '`'
+    data.codeOpen = '<code>'
+    data.codeClose = '</code>'
   }
 
   return options.fn(this, { data: data })
