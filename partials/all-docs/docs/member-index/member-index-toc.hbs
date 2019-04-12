@@ -1,0 +1,15 @@
+{
+"uid": "{{id}}",
+{{#link id~}}
+{{#if url}}
+"slug": "{{url}}",
+"name": "{{name}}"
+{{/if~}}
+{{/link}}
+}
+{{~#unless @last~}}
+,
+{{~/unless}}
+{{#indexChildren ~}}
+  {{>member-index-toc~}}
+{{/indexChildren}}

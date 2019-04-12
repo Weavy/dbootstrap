@@ -6,12 +6,14 @@
         <ul class="memberindex-list-0">
           {{>member-index-list}}
         </ul>
-
-      {{else~}}
+      {{else if (optionEquals "member-index-format" "toc")~}}
+        [
+          {{~>member-index-toc~}}
+        ]
+      {{~else~}}
         <ul class="member-index-grouped-0">
           {{>member-index-grouped}}
         </ul>
-
       {{/if~}}
     {{/if~}}
   {{else~}}
@@ -19,13 +21,14 @@
       <ul class="member-index-list nav toc">
         {{>member-index-list}}
       </ul>
-
-    {{else}}
-
+    {{else if (optionEquals "member-index-format" "toc")~}}
+      [
+        {{~>member-index-toc~}}
+      ]
+    {{~else}}
       <ul class="member-index-grouped">
         {{>member-index-grouped}}
       </ul>
-
     {{/if~}}
   {{/if~}}
 {{/if}}

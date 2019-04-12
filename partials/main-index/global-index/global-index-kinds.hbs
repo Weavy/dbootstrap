@@ -8,4 +8,7 @@
 {{#if (optionEquals "global-index-format" "table")}}
 {{>global-index-table kind=kind title=title ~}}
 {{/if~}}
+{{#if (optionEquals "global-index-format" "toc")}}
+{{>global-index-toc kind=kind ~}}
+{{/if~}}
 {{/unless~}}

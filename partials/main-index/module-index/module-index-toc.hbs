@@ -1,0 +1,18 @@
+{{#modules~}}
+{{#if @first~}}[{{/if~}}
+{
+"uid": "{{id}}",
+{{#link id~}}
+{{#if url}}
+"slug": "{{url}}",
+"name": "{{name}}"
+{{/if~}}
+{{/link}}
+}
+{{~#unless @last~}}
+,
+{{~/unless}}
+{{#if @last~}}
+]
+{{/if}}
+{{/modules~}}
