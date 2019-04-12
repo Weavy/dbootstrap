@@ -1,7 +1,8 @@
 {{#if virtual}}<em>{{/if}}{{#with (parentObject)}}{{#if virtual}}</em>{{/if~}}{{/with~}}
 {{#if name}}{{#sig~}}
 {{{@depOpen}~}}
-<a href="#{{{anchorName}}}">{{{@codeOpen}~}}
+{{#link id}}<a href="{{{url}}}">{{/link}}
+  {{{@codeOpen}~}}
 {{#if @prefix}}{{@prefix}} {{/if~}}
 {{@accessSymbol}}{{#if (isEvent)}}"{{{name}}}"{{else}}{{{name}}}{{/if~}}
 {{~#if @methodSign}}{{#if (isEvent)}} {{@methodSign}}{{else}}{{@methodSign}}{{/if}}{{/if~}}

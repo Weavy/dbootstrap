@@ -247,7 +247,11 @@ function _link (input, options) {
       if (option("fileLinkPrefix", options)) {
         topParent = topParentObject.call(linked, options) 
       }
-      output.url = (topParent ? topParent.name : '') + '#' + anchorName.call(linked, options)
+      if (topParent && topParent.id === linked.id) {
+        output.url = topParent.name;
+      } else {
+        output.url = (topParent ? topParent.name : '') + '#' + anchorName.call(linked, options)
+      }
     }
   }
   return output
