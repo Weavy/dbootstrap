@@ -1,14 +1,14 @@
 {
-  "name": "dmd",
-  "author": "Lloyd Brookes <75pound@gmail.com>",
-  "version": "3.0.14-patch2",
-  "description": "dmd (document with markdown) is a collection of handlebars templates for generating markdown documentation from jsdoc-parse input data. It is the default template set used by jsdoc-to-markdown.",
+  "name": "dbootstrap",
+  "author": "Weavy",
+  "version": "3.0.14-patch3",
+  "description": "Bootstrap HTML output template for jsdoc2md",
   "license": "MIT",
-  "repository": "https://github.com/75lb/dmd.git",
+  "repository": "https://github.com/Weavy/dbootstrap.git",
   "main": "./lib/dmd.js",
   "keywords": [
     "documentation",
-    "markdown"
+    "bootstrap"
   ],
   "engines": {
     "node": ">=4.0.0"
