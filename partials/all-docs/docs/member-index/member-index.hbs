@@ -22,9 +22,9 @@
         {{>member-index-list}}
       </ul>
     {{else if (optionEquals "member-index-format" "toc")~}}
-      [
+      {{#if @first }}[{{/if}}
         {{~>member-index-toc~}}
-      ]
+      {{#if @last}}]{{/if}}
     {{~else}}
       <ul class="member-index-grouped">
         {{>member-index-grouped}}
