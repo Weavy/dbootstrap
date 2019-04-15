@@ -4,9 +4,9 @@
     {{#each returns~}}
       {{#if type~}}
         {{#if type.names}}{{>linked-type-list types=type.names delimiter=" \| " ~}}{{/if}}
-        {{~#if description}} - {{{inlineLinks description}}}{{/if~}}
+        {{~#if description}} - {{{md (inlineLinks description)}}}{{/if~}}
       {{else~}}
-        {{{inlineLinks description}~}}
+        {{{md (inlineLinks description)}~}}
       {{/if~}}
     {{~/each}}
     <br/>
