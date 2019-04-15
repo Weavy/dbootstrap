@@ -1,7 +1,7 @@
 {{#if virtual}}<em>{{/if}}{{#with (parentObject)}}{{#if virtual}}</em>{{/if~}}{{/with~}}
 {{#if name}}{{#sig~}}
 {{{@depOpen}~}}
-{{#link id}}<a href="{{{url}}}">{{/link}}
+{{#link id}}<a href="{{{url}}}"{{#if ../class}} class="{{../class}}"{{/if}}>{{/link}}
   {{{@codeOpen}~}}
 {{#if @prefix}}{{@prefix}} {{/if~}}
 {{@accessSymbol}}{{#if (isEvent)}}"{{{name}}}"{{else}}{{{name}}}{{/if~}}

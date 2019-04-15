@@ -591,7 +591,7 @@ function anchorName (options) {
 }
 
 /**
-converts the supplied text to markdown
+converts the supplied text from markdown to html
 @static
 @category Returns string
 */

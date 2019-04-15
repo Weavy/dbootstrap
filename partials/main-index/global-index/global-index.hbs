@@ -1,3 +1,6 @@
+{{#if (optionEquals "global-index-format" "nav")}}
+<nav class="nav">
+{{/if}}
 {{>global-index-kinds kind="class" title="Classes" ~}}
 {{>global-index-kinds kind="mixin" title="Mixins" ~}}
 {{>global-index-kinds kind="member" title="Members" ~}}
@@ -8,3 +11,6 @@
 {{>global-index-kinds kind="typedef" title="Typedefs" ~}}
 {{>global-index-kinds kind="external" title="External" ~}}
 {{>global-index-kinds kind="interface" title="Interfaces" ~}}
+{{#if (optionEquals "global-index-format" "nav")}}
+</nav>
+{{/if}}

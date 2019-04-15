@@ -1,0 +1,16 @@
+{{#modules~}}
+{{#if @first~}}
+<nav class="nav">
+  <div class="nav-nav">
+  <h{{headingDepth}} class="nav-header">{{../title}}</h{{headingDepth}}>
+  {{/if~}}
+  <div class="nav-item">{{#link id~}}
+    {{~#if url~}}
+    <a href="{{url}}" class="nav-link">{{name}}</a>
+    {{~/if~}}
+    {{~/link}}</div>
+  {{#if @last~}}
+</div>
+</nav>
+{{/if~}}
+{{/modules~}}

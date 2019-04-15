@@ -11,4 +11,7 @@
 {{#if (optionEquals "global-index-format" "toc")}}
 {{>global-index-toc kind=kind ~}}
 {{/if~}}
+{{#if (optionEquals "global-index-format" "nav")}}
+{{>global-index-nav kind=kind ~}}
+{{/if~}}
 {{/unless~}}

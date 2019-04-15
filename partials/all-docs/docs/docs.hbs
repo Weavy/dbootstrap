@@ -1,5 +1,7 @@
 {{>header~}}
+{{#if (option "fileLinkPrefix")}}{{#unless memberof}}<aside class="toc doc-sidebar-right">{{/unless}}{{/if}}
+  {{>member-index~}}
+{{#if (option "fileLinkPrefix")}}{{#unless memberof}}</aside>{{/unless}}{{/if}}
 {{>body}}
-{{>member-index~}}
 {{>separator~}}
 {{>members~}}

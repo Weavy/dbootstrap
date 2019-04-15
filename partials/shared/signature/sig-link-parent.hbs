@@ -1,7 +1,7 @@
 {{#if name}}
 {{#sig~}}
 {{{@depOpen}~}}
-<a href="#{{{anchorName}}}">
+<a href="#{{{anchorName}}}"{{#if class}} class="{{class}}"{{/if}}>
   {{{@codeOpen}~}}
   {{#if @prefix}}{{@prefix}} {{/if~}}
   {{#if (isClassMember)}}{{@parent~}}{{/if~}}
