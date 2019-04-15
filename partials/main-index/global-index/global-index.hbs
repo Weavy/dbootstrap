@@ -1,5 +1,5 @@
 {{#if (optionEquals "global-index-format" "nav")}}
-<nav class="nav">
+<nav class="{{{{option "global-index-class"}}}}">
 {{/if}}
 {{>global-index-kinds kind="class" title="Classes" ~}}
 {{>global-index-kinds kind="mixin" title="Mixins" ~}}

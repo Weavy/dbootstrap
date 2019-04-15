@@ -1,11 +1,11 @@
 {{#globals kind=kind ~}}
 {{#if @first~}}
-<div class="nav-nav">
-<h{{headingDepth}} class="nav-header">{{../title}}</h{{headingDepth}}>
+<div class="{{{option "global-index-class"}}}-nav">
+  <h{{headingDepth}} class="{{option "global-index-class"}}-header">{{../title}}</h{{headingDepth}}>
 {{/if~}}
-<div class="nav-item">{{#link id~}}
+  <div class="{{{option "global-index-class"}}}-item">{{#link id~}}
 {{~#if url~}}
-<a href="{{url}}" class="nav-link">{{name}}</a>
+    <a href="{{url}}" class="{{{option "global-index-class"}}}-link">{{name}}</a>
 {{~/if~}}
 {{~/link}}</div>
 {{#if @last~}}
