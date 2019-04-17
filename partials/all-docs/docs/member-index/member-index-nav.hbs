@@ -1,0 +1,6 @@
+<li class="nav-item level-{{./level}}">
+{{>sig-link-parent scroll=true class="nav-link"}}
+</li>
+{{#indexChildren ~}}
+{{>member-index-nav level=(add ../level 1)~}}
+{{/indexChildren}}

@@ -1,7 +1,7 @@
-{{>header~}}
-{{#if (option "fileLinkPrefix")}}{{#unless memberof}}<aside class="toc doc-sidebar-right">{{/unless}}{{/if}}
+<div class="entity-documentation" data-id="{{{anchorName}}}">
+  {{>header~}}
   {{>member-index~}}
-{{#if (option "fileLinkPrefix")}}{{#unless memberof}}</aside>{{/unless}}{{/if}}
-{{>body}}
-{{>separator~}}
-{{>members~}}
+  {{>body}}
+  {{>separator~}}
+  {{>members~}}
+</div>

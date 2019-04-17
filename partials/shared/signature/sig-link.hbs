@@ -1,3 +1,4 @@
+<span class="sig">
 {{#if virtual}}<em>{{/if}}{{#with (parentObject)}}{{#if virtual}}</em>{{/if~}}{{/with~}}
 {{#if name}}{{#sig~}}
 {{{@depOpen}~}}
@@ -7,9 +8,15 @@
 {{@accessSymbol}}{{#if (isEvent)}}"{{{name}}}"{{else}}{{{name}}}{{/if~}}
 {{~#if @methodSign}}{{#if (isEvent)}} {{@methodSign}}{{else}}{{@methodSign}}{{/if}}{{/if~}}
   {{{@codeClose}}}</a>
-{{~#if @returnSymbol}} {{@returnSymbol}}{{/if~}}
-{{#if @returnTypes}} {{>linked-type-list types=@returnTypes delimiter=" \| " }}{{/if~}}
-{{#if @suffix}} {{@suffix}}{{/if~}}
+
+
+{{~#if (or @returnSymbol @returnTypes @suffix)}} <span class="sig-details">
+  {{~#if @returnSymbol}} {{@returnSymbol}}{{/if~}}
+  {{#if @returnTypes}} <span class="sig-returns">{{>linked-type-list types=@returnTypes delimiter=" \| " }}</span>{{/if~}}
+  {{#if @suffix}} <span class="sig-suffix">{{@suffix}}</span>{{/if~}}
+</span>{{/if}}
+
 {{{@depClose}~}}
 {{~/sig}}{{/if~}}
 {{#if virtual}}<em>{{/if}}{{#with (parentObject)}}{{#if virtual}}</em>{{/if~}}{{/with~}}
+</span>

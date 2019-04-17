@@ -3,27 +3,35 @@
   {{#if isExported~}}
     {{#if (equal (depth) 0)}}
       {{#if (optionEquals "member-index-format" "list")}}
-        <ul class="memberindex-list-0">
+        <ul class="member-index-list">
           {{>member-index-list}}
         </ul>
-      {{else if (optionEquals "member-index-format" "toc")~}}
+      {{else if (optionEquals "member-index-format" "nav")}}
+        <ul class="member-index-nav flex-column nav toc" id="toc">
+          {{>member-index-nav level=0}}
+        </ul>
+      {{else if (optionEquals "member-index-format" "json")~}}
         [
-          {{~>member-index-toc~}}
+          {{~>member-index-json~}}
         ]
       {{~else~}}
-        <ul class="member-index-grouped-0">
+        <ul class="member-index-grouped">
           {{>member-index-grouped}}
         </ul>
       {{/if~}}
     {{/if~}}
   {{else~}}
     {{#if (optionEquals "member-index-format" "list")}}
-      <ul class="member-index-list nav toc">
+      <ul class="member-index-list">
         {{>member-index-list}}
       </ul>
-    {{else if (optionEquals "member-index-format" "toc")~}}
+    {{else if (optionEquals "member-index-format" "nav")}}
+      <ul class="member-index-nav flex-column nav toc" id="toc">
+        {{>member-index-nav level=0}}
+      </ul>
+    {{else if (optionEquals "member-index-format" "json")~}}
       {{#if @first }}[{{/if}}
-        {{~>member-index-toc~}}
+        {{~>member-index-json~}}
       {{#if @last}}]{{/if}}
     {{~else}}
       <ul class="member-index-grouped">

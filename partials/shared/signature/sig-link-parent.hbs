@@ -1,7 +1,7 @@
 {{#if name}}
 {{#sig~}}
 {{{@depOpen}~}}
-<a href="#{{{anchorName}}}"{{#if class}} class="{{class}}"{{/if}}>
+<a href="#{{{anchorName}}}"{{#if ./scroll}} data-scroll{{/if}}{{#if ./class}} class="{{./class}}"{{/if}}>
   {{{@codeOpen}~}}
   {{#if @prefix}}{{@prefix}} {{/if~}}
   {{#if (isClassMember)}}{{@parent~}}{{/if~}}
@@ -9,9 +9,12 @@
   {{~#if @methodSign}}{{#if (isEvent)}} {{@methodSign}}{{else}}{{@methodSign}}{{/if}}{{/if~}}
   {{{@codeClose}}}
 </a>
-{{~#if @returnSymbol}} {{@returnSymbol}}{{/if~}}
-{{#if @returnTypes}} {{>linked-type-list types=@returnTypes delimiter=" \| " }}{{/if~}}
-{{#if @suffix}} {{@suffix}}{{/if~}}
+
+{{#if (or @returnSymbol @returnTypes @suffix)}}<span class="sig-details">
+  {{~#if @returnSymbol}} {{@returnSymbol}}{{/if~}}
+  {{#if @returnTypes}} <span class="sig-returns">{{>linked-type-list types=@returnTypes delimiter=" \| " }}</span>{{/if~}}
+  {{#if @suffix}} <span class="sig-suffix">{{@suffix}}</span>{{/if~}}
+</span>{{/if}}
 {{{@depClose}~}}
 {{~/sig}}
 {{/if~}}

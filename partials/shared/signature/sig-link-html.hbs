@@ -10,8 +10,12 @@
 {{{@codeClose}~}}
 </a>
 
-{{~#if @returnSymbol}} {{@returnSymbol}}{{/if~}}
-{{#if @returnTypes}} {{>linked-type-list types=@returnTypes html=true delimiter=" | " }}{{/if~}}
-{{#if @suffix}} {{@suffix}}{{/if~}}
+
+{{~#if (or @returnSymbol @returnTypes @suffix)}} <span class="sig-details">
+  {{~#if @returnSymbol}} {{@returnSymbol}}{{/if~}}
+  {{#if @returnTypes}} <span class="sig-returns">{{>linked-type-list types=@returnTypes html=true delimiter=" | " }}</span>{{/if~}}
+  {{#if @suffix}} <span class="sig-suffix">{{@suffix}}</span>{{/if~}}
+</span>{{/if}}
+
 {{{@depClose}~}}
 {{~/sig}}{{/if~}}

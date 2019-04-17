@@ -33,6 +33,35 @@ exports.equal = equal
 exports['json-stringify'] = JSON.stringify
 
 /**
+Logical helpers
+*/
+exports.eq = function (v1, v2) {
+  return v1 === v2;
+}
+exports.ne = function (v1, v2) {
+  return v1 !== v2;
+}
+exports.lt = function (v1, v2) {
+  return v1 < v2;
+}
+exports.gt = function (v1, v2) {
+  return v1 > v2;
+}
+exports.lte = function (v1, v2) {
+  return v1 <= v2;
+}
+exports.gte = function (v1, v2) {
+  return v1 >= v2;
+}
+exports.and = function () {
+  return Array.prototype.slice.call(arguments).every(Boolean);
+}
+exports.or = function () {
+  return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
+}
+
+
+/**
 Escape special md characters
 */
 function escape (input) {
@@ -190,12 +219,12 @@ function _groupBy (identifiers, groupByFields) {
 
   groupByFields.forEach(function (group) {
     var groupValues = identifiers
-      .filter(function (identifier) {
-        /* exclude constructors from grouping.. re-implement to work off a `null` group value */
-        return identifier.kind !== 'constructor'
-      })
-      .map(function (i) { return i[group] })
-      .reduce(unique, [])
+    .filter(function (identifier) {
+      /* exclude constructors from grouping.. re-implement to work off a `null` group value */
+      return identifier.kind !== 'constructor'
+    })
+    .map(function (i) { return i[group] })
+    .reduce(unique, [])
     if (groupValues.length <= 1) groupByFields = groupByFields.reduce(without(group), [])
   })
   identifiers = _addGroup(identifiers, groupByFields)

@@ -583,10 +583,11 @@ function anchorName (options) {
     this.isExported ? 'exp_' : '',
     this.kind === 'constructor' ? 'new_' : '',
     this.id
-      .replace(/:/g, '_')
-      .replace(/~/g, '..')
+      .replace(/:/g, '--')
+      .replace(/~/g, '__')
       .replace(/\(\)/g, '_new')
-      .replace(/#/g, '+')
+      .replace(/#/g, '-')
+      .replace(/\./g, '_')
   )
 }
 
