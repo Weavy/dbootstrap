@@ -8,7 +8,7 @@ var unique = require('reduce-unique')
 var without = require('reduce-without')
 
 /**
-A library of helpers used exclusively by dmd.. dmd also registers helpers from ddata.
+A library of helpers used exclusively by dbs.. dbs also registers helpers from ddata.
 @module
 */
 exports.escape = escape

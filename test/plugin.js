@@ -1,6 +1,6 @@
 'use strict'
 const TestRunner = require('test-runner')
-const dmd = require('../')
+const dbs = require('../')
 const path = require('path')
 const a = require('assert')
 
@@ -15,17 +15,17 @@ const fixture = [{
 }]
 
 runner.test('plugin', function () {
-  const result = dmd(fixture, { plugin: 'dmd-plugin-example' })
+  const result = dbs(fixture, { plugin: 'dmd-plugin-example' })
   a.ok(/documentation generated on/.test(result))
 })
 
 runner.test('plugin: absolute path', function () {
-  const result = dmd(fixture, { plugin: path.resolve(__dirname, 'fixture', 'dmd-plugin-example', 'lib', 'dmd-plugin-example.js') })
+  const result = dbs(fixture, { plugin: path.resolve(__dirname, 'fixture', 'dmd-plugin-example', 'lib', 'dmd-plugin-example.js') })
   a.ok(/documentation generated on/.test(result))
 })
 
 runner.test('plugin: none-existent path', function () {
   a.throws(function () {
-    dmd(fixture, { plugin: 'forejfirweuhnvkljne' })
+    dbs(fixture, { plugin: 'forejfirweuhnvkljne' })
   })
 })

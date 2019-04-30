@@ -1,11 +1,11 @@
 {
   "name": "dbootstrap",
   "author": "Weavy",
-  "version": "3.0.14-patch7",
+  "version": "0.1",
   "description": "Bootstrap HTML output template for jsdoc2md",
   "license": "MIT",
   "repository": "https://github.com/Weavy/dbootstrap.git",
-  "main": "./lib/dmd.js",
+  "main": "./lib/dbs.js",
   "keywords": [
     "documentation",
     "bootstrap"
