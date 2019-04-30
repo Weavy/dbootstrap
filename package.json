@@ -1,7 +1,7 @@
 {
   "name": "dbootstrap",
   "author": "Weavy",
-  "version": "0.1",
+  "version": "4.0.1",
   "description": "Bootstrap HTML output template for jsdoc2md",
   "license": "MIT",
   "repository": "https://github.com/Weavy/dbootstrap.git",
@@ -46,5 +46,8 @@
       "test/fixture",
       "test/overrides"
     ]
+  },
+  "peerDependencies": {
+    "jsdoc-parse": "^3.0.1"
   }
 }
