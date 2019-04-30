@@ -1,5 +1,5 @@
 <li>
-  {{#unless (equal _title undefined)}}<em>{{_title}}</em>{{else}}{{>sig-link-html}}{{/unless}}
+  {{#unless (equal _title undefined)}}<em><a href="#{{{anchorName}}}">{{{groupTitle _title}}}</a></em>{{else}}{{>sig-link-html}}{{/unless}}
   {{#groupBy (option "group-by")~}}
   <ul class="member-index-grouped">{{>member-index-grouped baseLevel=(add ../level ../baseLevel 1)~}}</ul>
   {{/groupBy~}}

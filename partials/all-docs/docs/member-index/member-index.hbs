@@ -3,38 +3,46 @@
   {{#if isExported~}}
     {{#if (equal (depth) 0)}}
       {{#if (optionEquals "member-index-format" "list")}}
-        <ul class="member-index-list">
+        <ul class="member-index member-index-list">
           {{>member-index-list}}
         </ul>
       {{else if (optionEquals "member-index-format" "nav")}}
-        <ul class="member-index-nav flex-column nav toc" id="toc">
+        <ul class="member-index member-index-nav flex-column nav toc" id="toc">
           {{>member-index-nav level=0}}
+        </ul>
+      {{else if (optionEquals "member-index-format" "nav-grouped")}}
+        <ul class="member-index member-index-nav flex-column nav toc" id="toc">
+          {{>member-index-nav-grouped level=0}}
         </ul>
       {{else if (optionEquals "member-index-format" "json")~}}
         [
           {{~>member-index-json~}}
         ]
       {{~else~}}
-        <ul class="member-index-grouped">
+        <ul class="member-index member-index-grouped">
           {{>member-index-grouped}}
         </ul>
       {{/if~}}
     {{/if~}}
   {{else~}}
     {{#if (optionEquals "member-index-format" "list")}}
-      <ul class="member-index-list">
+      <ul class="member-index member-index-list">
         {{>member-index-list}}
       </ul>
     {{else if (optionEquals "member-index-format" "nav")}}
-      <ul class="member-index-nav flex-column nav toc" id="toc">
+      <ul class="member-index member-index-nav flex-column nav toc" id="toc">
         {{>member-index-nav level=0}}
+      </ul>
+    {{else if (optionEquals "member-index-format" "nav-grouped")}}
+      <ul class="member-index member-index-nav flex-column nav toc" id="toc">
+        {{>member-index-nav-grouped level=0}}
       </ul>
     {{else if (optionEquals "member-index-format" "json")~}}
       {{#if @first }}[{{/if}}
         {{~>member-index-json~}}
       {{#if @last}}]{{/if}}
     {{~else}}
-      <ul class="member-index-grouped">
+      <ul class="member-index member-index-grouped">
         {{>member-index-grouped}}
       </ul>
     {{/if~}}

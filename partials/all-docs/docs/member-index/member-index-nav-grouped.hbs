@@ -1,0 +1,11 @@
+{{#unless (equal _title undefined)}}<li class="nav-item level-{{./level}}">
+  <a href="#{{{anchorName}}}" class="nav-link">{{{groupTitle _title}}}</a>
+</li>
+{{else}}{{#if (option "member-index-details")}}
+<li class="nav-item level-{{./level}}">
+{{>sig-link-html scroll=true class="nav-link"}}
+</li>{{/if}}
+{{/unless}}
+{{#groupBy (option "group-by")~}}
+{{>member-index-nav-grouped level=(add ../level 1)~}}
+{{/groupBy~}}

@@ -1,3 +1,14 @@
+
+{{#if (or (optionEquals "member-index-format" "grouped") (optionEquals "member-index-format" "nav-grouped"))}}
+{{#groupBy (option "group-by")~}}
+{{#unless (equal _title undefined)}}
+  <h2 id="{{{anchorName}}}" class="heading-group">{{{groupTitle _title}}}</h2>
+{{else}}
+{{>docs~}}
+{{/unless}}
+{{/groupBy}}
+{{else}}
 {{#children inherited=undefined ~}}
 {{>docs~}}
 {{/children~}}
+{{/if}}

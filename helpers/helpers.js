@@ -20,6 +20,7 @@ exports.deprecated = deprecated
 exports.groupBy = groupBy
 exports._groupBy = _groupBy
 exports._addGroup = _addGroup
+exports.groupTitle = groupTitle
 exports.add = add
 exports.kindInThisContext = kindInThisContext
 exports.titleCase = titleCase
@@ -207,13 +208,13 @@ function _addGroup (identifiers, groupByFields) {
 
 function _groupChildren (groupByFields, options) {
   var children = ddata._children.call(this, options)
-  return _groupBy(children, groupByFields)
+  return _groupBy(children, groupByFields, options)
 }
 
 /**
 takes the children of this, groups them, inserts group headings..
 */
-function _groupBy (identifiers, groupByFields) {
+function _groupBy (identifiers, groupByFields, options) {
   /* don't modify the input array */
   groupByFields = groupByFields.slice(0)
 
@@ -250,10 +251,16 @@ function _groupBy (identifiers, groupByFields) {
     prevGroup = identifier._group
     delete identifier._group
   })
-
+  
+  var memberof, scope = "global";
+  
   /* insert title items */
-  inserts.reverse().forEach(function (insert) {
-    identifiers.splice(insert.index, 0, { _title: insert._title, level: insert.level })
+  inserts.reverse().forEach(function (insert, num) {
+    if(identifiers[insert.index] && identifiers[insert.index].memberof) {
+      memberof = identifiers[insert.index].memberof;
+      scope = identifiers[insert.index].scope;
+    }
+    identifiers.splice(insert.index, 0, { _title: insert._title, level: insert.level, id: memberof + scopeId(scope) + "group:" + insert._title })
   })
   return identifiers
 }
@@ -290,6 +297,30 @@ function kindInThisContext (options) {
 
 function titleCase (string) {
   return string[0].toUpperCase() + string.slice(1)
+}
+
+function groupTitle (title) {
+  switch (title) {
+    case "static":
+    case "inner":
+    case "instance":
+    case "global":
+      title += " members";
+      break;
+  }
+  return title[0].toUpperCase() + title.substr(1);
+}
+
+function scopeId(scope) {
+  switch (scope) {
+    case "static":
+      return ".";
+    case "inner":
+      return "~";
+    case "instance":
+      return "#";
+  }
+  return "";
 }
 
 /**
