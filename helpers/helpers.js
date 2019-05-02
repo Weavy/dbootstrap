@@ -387,6 +387,10 @@ function examples (options) {
       if (!(/```/.test(example) || exampleLang === 'off')) {
         example = util.format('<pre><code class="%s">%s</code></pre>', exampleLang ? 'language-' + exampleLang : '', example ? example + '\n' : '')
       }
+      
+      if(/```/.test(example)) {
+        example = ddata.md(example);
+      }
 
       return prev + options.fn({caption: caption, example: example})
     }, '')

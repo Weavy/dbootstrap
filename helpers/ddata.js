@@ -716,7 +716,7 @@ function parentName (options) {
 }
 
 /**
-returns a dmd option, e.g. "sort-by", "heading-depth" etc.
+returns an option, e.g. "sort-by", "heading-depth" etc.
 @static
 */
 function option (name, options) {
