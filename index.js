@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * @module dbs
  */
@@ -7,8 +5,8 @@ module.exports = dbs
 
 const path = require('path')
 const Cache = require('cache-point')
-const DbsOptions = require('./dbs-options')
-const dbsVersion = require('../package').version
+const DbsOptions = require('./lib/dbs-options')
+const dbsVersion = require('./package').version
 
 /**
  * Transforms doclet data into markdown documentation.
@@ -51,7 +49,7 @@ function generate (templateData, options) {
   const arrayify = require('array-back')
   const handlebars = require('handlebars')
   const walkBack = require('walk-back')
-  const DbsOptions = require('./dbs-options')
+  const DbsOptions = require('./lib/dbs-options')
   const FileSet = require('file-set')
 
   function registerPartials (paths) {
@@ -72,7 +70,7 @@ function generate (templateData, options) {
   }
 
   /* Register handlebars helper modules */
-  ;[ '../helpers/helpers', '../helpers/ddata', '../helpers/selectors' ].forEach(function (modulePath) {
+  ;[ './helpers/helpers', './helpers/ddata', './helpers/selectors' ].forEach(function (modulePath) {
     handlebars.registerHelper(require(modulePath))
   })
 
@@ -88,12 +86,12 @@ function generate (templateData, options) {
   options._indexDepth = 0
 
   /* state module, for sharing with the helpers */
-  const state = require('./state')
+  const state = require('./lib/state')
   state.templateData = templateData
   state.options = options
 
   /* register all dbs partials. */
-  registerPartials(path.resolve(__dirname, '..', 'partials/**/*.hbs'))
+  registerPartials(path.resolve(__dirname, './partials/**/*.hbs'))
 
   /* if plugins were specified, register the helpers/partials from them too */
   if (options.plugin) {

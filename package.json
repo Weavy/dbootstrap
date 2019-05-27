@@ -5,22 +5,21 @@
   "description": "Bootstrap HTML output template for jsdoc2md",
   "license": "MIT",
   "repository": "https://github.com/Weavy/dbootstrap.git",
-  "main": "./lib/dbs.js",
   "keywords": [
     "documentation",
     "bootstrap"
   ],
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=8.0.0"
   },
   "files": [
-    "helpers",
-    "lib",
+    "index.js",
+    "helpers/*.js",
+    "lib/*.js",
     "partials"
   ],
   "scripts": {
-    "test": "test-runner test/*.js test/ddata/*.js",
-    "docs": "jsdoc2md -t jsdoc2md/README.hbs -p list -l js lib/*.js > README.md; echo"
+    "test": "test-runner test/*.js test/ddata/*.js"
   },
   "dependencies": {
     "array-back": "^3.1.0",
