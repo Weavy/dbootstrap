@@ -7,6 +7,7 @@ var objectGet = require('object-get')
 var where = require('test-value').where
 var flatten = require('reduce-flatten')
 var state = require('../lib/state')
+var path = require('path')
 
 /**
  * ddata is a collection of handlebars helpers for working with the documentation data output by [jsdoc-parse](https://github.com/75lb/jsdoc-parse).
@@ -244,13 +245,16 @@ function _link (input, options) {
       }
     } else {
       var topParent;
-      if (option("fileLinkPrefix", options)) {
+      var fileLinkPrefix = option("fileLinkPrefix", options);
+      
+      if (fileLinkPrefix) {
         topParent = topParentObject.call(linked, options) 
       }
       if (topParent && topParent.id === linked.id) {
         output.url = topParent.name;
       } else {
-        output.url = (topParent ? topParent.name : '') + '#' + anchorName.call(linked, options)
+        var relPath = path.relative(option("fileLinkBasePath", options), topParent.meta.path);
+        output.url = (topParent ? (relPath ? relPath + "/" + topParent.name : topParent.name) : '') + '#' + anchorName.call(linked, options)
       }
     }
   }
