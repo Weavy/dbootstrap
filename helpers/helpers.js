@@ -290,6 +290,8 @@ function kindInThisContext (options) {
     return 'enum'
   } else if (this.kind === 'member' && this.scope === 'global') {
     return 'variable'
+  } else if (this.kind === 'mixin') {
+    return "plugin"
   } else {
     return this.kind
   }
