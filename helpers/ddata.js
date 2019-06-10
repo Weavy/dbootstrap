@@ -232,6 +232,10 @@ function _link (input, options) {
     output = { name: input, url: null }
   } else {
     output.name = input.replace(namepath, linked.name)
+    output.parentTypicalName = parentName.call(linked, options, "typicalName")
+    if(output.parentTypicalName) {
+      output.parentTypicalName += (linked.scope === 'static' || linked.scope === 'instance') ? '.' : linked.scope === 'inner' ? '~' : ''
+    }
     if (isExternal.call(linked)) {
       if (linked.description) {
         output.url = '#' + anchorName.call(linked, options)
@@ -244,16 +248,16 @@ function _link (input, options) {
         }
       }
     } else {
-      var topParent;
+      var topParent, relPath;
       var fileLinkPrefix = option("fileLinkPrefix", options);
       
       if (fileLinkPrefix) {
         topParent = topParentObject.call(linked, options) 
+        relPath = path.relative(option("fileLinkBasePath", options), topParent.meta.path);
       }
       if (topParent && topParent.id === linked.id) {
-        output.url = topParent.name;
+        output.url = relPath ? relPath + "/" + topParent.name : topParent.name;
       } else {
-        var relPath = path.relative(option("fileLinkBasePath", options), topParent.meta.path);
         output.url = (topParent ? (relPath ? relPath + "/" + topParent.name : topParent.name) : '') + '#' + anchorName.call(linked, options)
       }
     }
@@ -314,6 +318,8 @@ function sig (options) {
 
   data.prefix = this.kind === 'constructor' ? 'new' : ''
   data.parent = null
+  data.parentName = null
+  data.parentTypicalName
   data.accessSymbol = null
   data.name = isEvent.call(this) ? '"' + this.name + '"' : this.name
   data.methodSign = null
@@ -334,6 +340,8 @@ function sig (options) {
 
   if (!isEvent.call(this)) {
     data.parent = parentName.call(this, options)
+    data.parentName = parentName.call(this, options, "name")
+    data.parentTypicalName = parentName.call(this, options, "typicalName")
     data.accessSymbol = (this.scope === 'static' || this.scope === 'instance') ? '.' : this.scope === 'inner' ? '~' : ''
   }
 
@@ -688,7 +696,7 @@ returns the parent name, instantiated if necessary
 @returns {string}
 @static
 */
-function parentName (options) {
+function parentName (options, nameType) {
   function instantiate (input) {
     if (/^[A-Z]{3}/.test(input)) {
       return input.replace(/^([A-Z]+)([A-Z])/, function (str, p1, p2) {
@@ -706,12 +714,12 @@ function parentName (options) {
     var parent = arrayify(options.data.root).find(where({ id: this.memberof }))
     if (parent) {
       if (this.scope === 'instance') {
-        var name = parent.typicalname || parent.name
+        var name = nameType !== "name" && parent.typicalname || nameType !== "typicalName" && parent.name || ''
         return instantiate(name)
       } else if (this.scope === 'static' && !(parent.kind === 'class' || parent.kind === 'constructor') && _children.call(parent, options).filter(where({ scope: 'instance'})).length === 0) {
-        return parent.typicalname || parent.name
+        return nameType !== "name" && parent.typicalname || nameType !== "typicalName" && parent.name || ''
       } else {
-        return parent.name
+        return nameType !== "typicalName" && parent.name || ''
       }
     } else {
       return this.memberof

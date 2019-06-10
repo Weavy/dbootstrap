@@ -3,7 +3,7 @@
 {{{@depOpen}~}}
 {{{@codeOpen}~}}
 {{#if @prefix}}{{@prefix}} {{/if~}}
-{{@parent~}}
+{{#if hideparent}}{{@parentTypicalName~}}{{else }}{{@parent~}}{{/if~}}
 {{@accessSymbol}}{{#if (isEvent)}}"{{{name}}}"{{else}}{{{escape name}}}{{/if~}}
 {{#if @methodSign}}{{#if (isEvent)}} {{@methodSign}}{{else}}{{@methodSign}}{{/if}}{{/if~}}
 {{{@codeClose}~}}
