@@ -1,9 +1,8 @@
-'use strict'
-const TestRunner = require('test-runner')
-const dbs = require('../')
+const Tom = require('test-runner').Tom
+const dbootstrap = require('../')
 const a = require('assert')
 
-const runner = new TestRunner()
+const tom = module.exports = new Tom('api')
 
 const fixture = [{
   id: 'someclass',
@@ -13,26 +12,37 @@ const fixture = [{
   description: 'is a class'
 }]
 
-runner.test('dbs() returns correct data', function () {
-  const result = dbs(fixture)
+tom.test('dbootstrap() returns correct data', function () {
+  const result = dbootstrap(fixture)
   a.ok(/is a class/.test(result))
 })
 
-runner.test('dbs({ noCache }) returns correct data', function () {
+tom.test('dbootstrap() again to exercise the cache', function () {
+  const result = dbootstrap(fixture)
+  a.ok(/is a class/.test(result))
+})
+
+tom.test('dbootstrap({ noCache }) returns correct data', function () {
   const options = { noCache: true }
-  const result = dbs(fixture, options)
+  const result = dbootstrap(fixture, options)
   a.ok(/is a class/.test(result))
 })
 
-runner.test('dbs.async() returns correct data', function () {
-  return dbs.async(fixture).then(function (result) {
+tom.test('dbootstrap.async() returns correct data', function () {
+  return dbootstrap.async(fixture).then(function (result) {
     a.ok(/is a class/.test(result))
   })
 })
 
-runner.test('dbs.async({ noCache }) returns correct data', function () {
+tom.test('dbootstrap.async() again to exercise the cache', function () {
+  return dbootstrap.async(fixture).then(function (result) {
+    a.ok(/is a class/.test(result))
+  })
+})
+
+tom.test('dbootstrap.async({ noCache }) returns correct data', function () {
   const options = { noCache: true }
-  return dbs.async(fixture, options).then(function (result) {
+  return dbootstrap.async(fixture, options).then(function (result) {
     a.ok(/is a class/.test(result))
   })
 })

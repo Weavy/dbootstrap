@@ -1,10 +1,9 @@
-'use strict'
-const TestRunner = require('test-runner')
-const dbs = require('../')
+const Tom = require('test-runner').Tom
+const dbootstrap = require('../')
 const path = require('path')
 const a = require('assert')
 
-const runner = new TestRunner()
+const tom = module.exports = new Tom('plugin')
 
 const fixture = [{
   id: 'someclass',
@@ -14,18 +13,18 @@ const fixture = [{
   description: 'is a class'
 }]
 
-runner.test('plugin', function () {
-  const result = dbs(fixture, { plugin: 'dmd-plugin-example' })
+tom.test('plugin: simple', function () {
+  const result = dbootstrap(fixture, { plugin: 'dmd-plugin-example' })
   a.ok(/documentation generated on/.test(result))
 })
 
-runner.test('plugin: absolute path', function () {
-  const result = dbs(fixture, { plugin: path.resolve(__dirname, 'fixture', 'dmd-plugin-example', 'lib', 'dmd-plugin-example.js') })
+tom.test('plugin: absolute path', function () {
+  const result = dbootstrap(fixture, { plugin: path.resolve(__dirname, 'fixture', 'dmd-plugin-example', 'lib', 'dmd-plugin-example.js') })
   a.ok(/documentation generated on/.test(result))
 })
 
-runner.test('plugin: none-existent path', function () {
+tom.test('plugin: none-existent path', function () {
   a.throws(function () {
-    dbs(fixture, { plugin: 'forejfirweuhnvkljne' })
+    dbootstrap(fixture, { plugin: 'forejfirweuhnvkljne' })
   })
 })
