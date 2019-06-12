@@ -4,16 +4,15 @@
 <table class="table">
   <thead>
     <tr>
-      {{#each (tableHeadHtml properties "name|Name" "type|Type" "defaultvalue|Default" "description|Description")}}<th>{{this}}</th>{{/each}}
+      {{#each (tableHeadHtml properties "name|Name" "defaultvalue|Default" "description|Description")}}<th>{{this}}</th>{{/each}}
     </tr>
   </thead>
   <tbody>
-    {{#tableRow properties "name" "type" "defaultvalue" "description" ~}}
+    {{#tableRow properties "name" "defaultvalue" "description" ~}}
     <tr>
-    {{#if @col1}}<td>{{>param-table-name}}</td>{{/if~}}
-    {{#if @col2}}<td>{{>linked-type-list types=type.names delimiter=" | " html=true}}</td>{{/if~}}
-    {{#if @col3}}<td>{{>defaultvalue}}</td>{{/if~}}
-    {{#if @col4}}<td>{{{md (inlineLinks description)}}}</td>{{/if}}
+    {{#if @col1}}<td class="text-nowrap">{{>param-table-name}}</td>{{/if~}}
+    {{#if @col2}}<td class="text-nowrap">{{>defaultvalue}}</td>{{/if~}}
+    {{#if @col3}}<td>{{{md (inlineLinks description)}}}</td>{{/if}}
     </tr>
     {{~/tableRow}}
   </tbody>

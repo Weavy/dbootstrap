@@ -2,16 +2,15 @@
 <table class="table">
   <thead>
     <tr>
-      {{#each (tableHeadHtml params "name|Param" "type|Type" "defaultvalue|Default" "description|Description")}}<th scope="col">{{this}}</th>{{/each}}
+      {{#each (tableHeadHtml params "name|Param" "defaultvalue|Default" "description|Description")}}<th scope="col">{{this}}</th>{{/each}}
     </tr>
   </thead>
   <tbody>
-    {{#tableRow params "name" "type" "defaultvalue" "description" ~}}
+    {{#tableRow params "name" "defaultvalue" "description" ~}}
     <tr>
-    {{#if @col1}}<td>{{>param-table-name}}</td>{{/if~}}
-    {{#if @col2}}<td>{{>linked-type-list types=type.names delimiter=" | " html=true}}</td>{{/if~}}
-    {{#if @col3}}<td>{{>defaultvalue}}</td>{{/if~}}
-    {{#if @col4}}<td>{{{md (inlineLinks description)}}}</td>{{/if}}
+    {{#if @col1}}<td class="text-nowrap">{{>param-table-name}}</td>{{/if~}}
+    {{#if @col2}}<td class="text-nowrap">{{>defaultvalue}}</td>{{/if~}}
+    {{#if @col3}}<td>{{{md (inlineLinks description)}}}</td>{{/if}}
     </tr>
     {{~/tableRow}}
   </tbody>
