@@ -15,9 +15,7 @@
           {{>member-index-nav-grouped level=0}}
         </ul>
       {{else if (optionEquals "member-index-format" "json")~}}
-        [
           {{~>member-index-json~}}
-        ]
       {{~else~}}
         <ul class="member-index member-index-grouped">
           {{>member-index-grouped}}
@@ -38,9 +36,7 @@
         {{>member-index-nav-grouped level=0}}
       </ul>
     {{else if (optionEquals "member-index-format" "json")~}}
-      {{#if @first }}[{{/if}}
         {{~>member-index-json~}}
-      {{#if @last}}]{{/if}}
     {{~else}}
       <ul class="member-index member-index-grouped">
         {{>member-index-grouped}}
