@@ -1,13 +1,15 @@
+{{#if @first}}[{{/if}}
 {
-"uid": "{{id}}",
+"uid": "{{id}}"
 {{#link id~}}
 {{#if url}}
-"slug": "{{url}}",
-"name": "{{name}}"
+,"slug": "{{url}}"
+,"name": "{{name}}"
 {{/if~}}
 {{/link}}
-}
-,
 {{#indexChildren ~}}
-{{>member-index-json~}}
+{{#if @first}},"children":{{/if}}
+{{~>member-index-json~}}
 {{/indexChildren}}
+}
+{{#if @last}}]{{else}},{{/if}}
